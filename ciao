@@ -1,0 +1,56 @@
+/**Format On Type "editor.formatOnType": true
+ /**
+  <?php
+
+/**
+ * @param array|bool $x The parameter description.
+ */
+function foo($x) {
+    //
+}
+/**
+ * @template T
+ */
+class MyCollection {
+
+    /** @var T[] */
+    var $items;
+
+    /** @return T */
+    function getItem($i) { return $this->items[$i]; }
+}
+/**
+ * @template T
+ * @param T[] $list
+ * @return T
+ */
+function array_first($list) {
+    return array_shift($list);
+}
+
+//
+$x = array_first( [1,2,3] ); // "T" is substituted with "int", "$x' is "int"
+/**
+ * @template TEntry
+ * @param TEntry[] $list
+ * @param TEntry $item
+ * @return int|string|false
+ */ 
+function find($list, $item) {
+    return array_search($item, $list);
+  }
+  /**
+ * @template TException of \Exception
+ * @param TException $e
+ * @return TException
+ */
+function handle($e) { return $e; }
+
+// call
+$e= handle(new InvalidArgumentException); // $e is "InvalidArgumentException", not just "Exception"
+/**
+ * @param MyCollection<int> $collection
+ */
+function foo( $collection ) {
+    // $collection is of type "MyCollection", where "T" is "int"
+}
